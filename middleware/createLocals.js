@@ -1,9 +1,16 @@
+import { getAllBooksAndTheirGenres } from '../models/booksModel.js';
+import { getAllGenres } from '../models/genresModel.js';
+
 const createLocals = async (req, res, next) => {
   res.locals.links = [
-    { href: '/', text: 'Odin Games' },
-    { href: '/games', text: 'Games' },
-    { href: '/categories', text: 'Categories' },
+    { href: '/', text: 'OdinBook' },
+    { href: '/books', text: 'Books' },
+    { href: '/genres', text: 'Genres' },
   ];
+
+  res.locals.books = await getAllBooksAndTheirGenres();
+  res.locals.genres = await getAllGenres();
+
   next();
 };
 

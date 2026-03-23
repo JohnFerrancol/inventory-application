@@ -2,130 +2,57 @@ import { Client } from 'pg';
 import 'dotenv/config';
 
 const SQL = `
-    -- CREATING TABLES
+  -----------------------------------------------------
+  -- Genres table
+  -- --------------------------------------------------
+  CREATE TABLE genres (
+      id SERIAL PRIMARY KEY,
+      name TEXT UNIQUE NOT NULL
+  );
 
-    CREATE TABLE IF NOT EXISTS games (
-        id SERIAL PRIMARY KEY,
-        name TEXT NOT NULL,
-        publisher TEXT
-    );
+  -----------------------------------------------------
+  -- Books table
+  -----------------------------------------------------
+  CREATE TABLE books (
+      id SERIAL PRIMARY KEY,
+      title TEXT NOT NULL,
+      author TEXT,
+      genre_id INT REFERENCES genres(id) ON DELETE SET NULL
+  );
 
-    CREATE TABLE IF NOT EXISTS genres (
-        id SERIAL PRIMARY KEY,
-        name TEXT UNIQUE NOT NULL
-    );
+  -- Reset
+  TRUNCATE books, genres RESTART IDENTITY CASCADE;
 
-    CREATE TABLE IF NOT EXISTS game_genres (
-        game_id INT REFERENCES games(id) ON DELETE CASCADE,
-        genre_id INT REFERENCES genres(id) ON DELETE CASCADE,
-        PRIMARY KEY (game_id, genre_id)
-    );
+  --------------------------------------------------
+  -- Genres
+  --------------------------------------------------
+  INSERT INTO genres (name) VALUES
+  ('Fantasy'),
+  ('Science Fiction'),
+  ('Mystery'),
+  ('Thriller'),
+  ('Romance'),
+  ('Horror'),
+  ('Non-fiction'),
+  ('Self-help');
 
-    -- Reset
-    TRUNCATE game_genres, games, genres RESTART IDENTITY CASCADE;
+  --------------------------------------------------
+  -- Books
+  --------------------------------------------------
+  INSERT INTO books (title, author, genre_id) VALUES
 
-    --------------------------------------------------
-    -- Genres
-    --------------------------------------------------
-    INSERT INTO genres (name) VALUES
-    ('RPG'),
-    ('Action'),
-    ('Open World'),
-    ('Strategy'),
-    ('Adventure'),
-    ('Souls-like'),
-    ('Shooter'),
-    ('Puzzle'),
-    ('Horror');
-
-    --------------------------------------------------
-    -- Games (with publisher as string)
-    --------------------------------------------------
-    INSERT INTO games (name, publisher) VALUES
-    ('Elden Ring', 'FromSoftware'),
-    ('Dark Souls III', 'FromSoftware'),
-    ('Sekiro: Shadows Die Twice', 'FromSoftware'),
-    ('The Witcher 3: Wild Hunt', 'CD Projekt Red'),
-    ('Baldur''s Gate 3', 'Larian Studios'),
-    ('Grand Theft Auto V', 'Rockstar Games'),
-    ('Red Dead Redemption 2', 'Rockstar Games'),
-    ('Portal 2', 'Valve'),
-    ('DOOM Eternal', 'Bethesda'),
-    ('Resident Evil 4', 'Capcom');
-
-    --------------------------------------------------
-    -- Relate games and genres
-    --------------------------------------------------
-
-    -- Elden Ring
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('RPG', 'Action', 'Souls-like', 'Open World')
-    WHERE g.name = 'Elden Ring';
-
-    -- Dark Souls III
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('RPG', 'Action', 'Souls-like')
-    WHERE g.name = 'Dark Souls III';
-
-    -- Sekiro
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('Action', 'Adventure')
-    WHERE g.name = 'Sekiro: Shadows Die Twice';
-
-    -- Witcher 3
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('RPG', 'Open World')
-    WHERE g.name = 'The Witcher 3: Wild Hunt';
-
-    -- Baldur's Gate 3
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('RPG', 'Strategy')
-    WHERE g.name = 'Baldur''s Gate 3';
-
-    -- GTA V
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('Action', 'Open World')
-    WHERE g.name = 'Grand Theft Auto V';
-
-    -- RDR2
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('Action', 'Open World', 'Adventure')
-    WHERE g.name = 'Red Dead Redemption 2';
-
-    -- Portal 2
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('Puzzle', 'Adventure')
-    WHERE g.name = 'Portal 2';
-
-    -- DOOM Eternal
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('Shooter', 'Action')
-    WHERE g.name = 'DOOM Eternal';
-
-    -- Resident Evil 4
-    INSERT INTO game_genres (game_id, genre_id)
-    SELECT g.id, gen.id
-    FROM games g JOIN genres gen
-    ON gen.name IN ('Horror', 'Action')
-    WHERE g.name = 'Resident Evil 4';
+  ('The Hobbit', 'J.R.R. Tolkien', (SELECT id FROM genres WHERE name = 'Fantasy')),
+  ('Mistborn: The Final Empire', 'Brandon Sanderson', (SELECT id FROM genres WHERE name = 'Fantasy')),
+  ('Dune', 'Frank Herbert', (SELECT id FROM genres WHERE name = 'Science Fiction')),
+  ('1984', 'George Orwell', (SELECT id FROM genres WHERE name = 'Science Fiction')),
+  ('The Da Vinci Code', 'Dan Brown', (SELECT id FROM genres WHERE name = 'Thriller')),
+  ('Gone Girl', 'Gillian Flynn', (SELECT id FROM genres WHERE name = 'Thriller')),
+  ('The Girl with the Dragon Tattoo', 'Stieg Larsson', (SELECT id FROM genres WHERE name = 'Mystery')),
+  ('The Shining', 'Stephen King', (SELECT id FROM genres WHERE name = 'Horror')),
+  ('Misery', 'Stephen King', (SELECT id FROM genres WHERE name = 'Thriller')),
+  ('Pride and Prejudice', 'Jane Austen', (SELECT id FROM genres WHERE name = 'Romance')),
+  ('Atomic Habits', 'James Clear', (SELECT id FROM genres WHERE name = 'Self-help')),
+  ('The 7 Habits of Highly Effective People', 'Stephen Covey', (SELECT id FROM genres WHERE name = 'Self-help'))
 `;
 
 const main = async () => {

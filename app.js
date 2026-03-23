@@ -8,8 +8,8 @@ import createLocals from './middleware/createLocals.js';
 import errorHandler from './middleware/errorHandler.js';
 
 import indexRouter from './routes/indexRouter.js';
-import gamesRouter from './routes/gamesRouter.js';
-import categoriesRouter from './routes/categoriesRouter.js';
+import booksRouter from './routes/booksRouter.js';
+import genresRouter from './routes/genresRouter.js';
 
 const app = express();
 
@@ -30,8 +30,8 @@ app.set('layout', 'layout');
 app.use(createLocals);
 
 app.use('/', indexRouter);
-app.use('/games', gamesRouter);
-app.use('/categories', categoriesRouter);
+app.use('/books', booksRouter);
+app.use('/genres', genresRouter);
 
 app.use(errorHandler);
 
