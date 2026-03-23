@@ -4,10 +4,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import 'dotenv/config';
 
+import createLocals from './middleware/createLocals.js';
 import errorHandler from './middleware/errorHandler.js';
 
 import indexRouter from './routes/indexRouter.js';
-import routeRouter from './routes/routeRouter.js';
+import gamesRouter from './routes/gamesRouter.js';
+import categoriesRouter from './routes/categoriesRouter.js';
 
 const app = express();
 
@@ -25,17 +27,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layout');
 
-app.use((req, res, next) => {
-  res.locals.links = [
-    { href: '/', text: 'Home' },
-    { href: '/route', text: 'Route' },
-  ];
-
-  next();
-});
+app.use(createLocals);
 
 app.use('/', indexRouter);
-app.use('/route', routeRouter);
+app.use('/games', gamesRouter);
+app.use('/categories', categoriesRouter);
 
 app.use(errorHandler);
 

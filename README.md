@@ -34,7 +34,7 @@ You will need to install the latest version of npm to get started on using this 
 npm install npm@latest -g
 ```
 
-- You will also need to set up [PostgreSQL](https://www.theodinproject.com/lessons/nodejs-installing-postgresql) locally on your machine
+- You will also need to set up [PostgreSQL](https://www.theodinproject.com/lessons/nodejs-installing-postgresql) locally on your machine and create an <b>inventory_application</b> database
 
 ### Installation
 
@@ -62,8 +62,8 @@ npm run start
 
 ## Roadmap
 
-- [ ] Set up an Express project and a PostgreSQL database with tables
-- [ ] Set up routes and controllers for the app
+- [x] Set up an Express project and a PostgreSQL database with tables
+- [x] Set up routes and controllers for the app
 - [ ] Create the 'READ' views, HTTP GET Requests
 - [ ] Create the forms for 'CREATE' and 'UPDATE'
 - [ ] Add 'DELETE' functionality

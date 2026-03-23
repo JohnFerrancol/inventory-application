@@ -4,7 +4,8 @@
     "dotenv": "^17.3.1",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -19,6 +20,7 @@
     "format:js": "prettier --write 'routes/**/*.js' 'controllers/**/*.js' 'middleware/**/*.js'",
     "format:ejs": "prettier --plugin=prettier-plugin-ejs --write 'views/**/*.ejs'",
     "format": "npm run format:js && npm run format:ejs",
-    "start": "node --watch app.js"
+    "start": "node --watch app.js",
+    "seed": "node seeders/seedDB.js"
   }
 }
