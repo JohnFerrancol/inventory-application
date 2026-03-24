@@ -1,6 +1,9 @@
 <div class="books-page">
+  <% if (locals.showAddBookDialog) { %> <%- include ('partials/newBooksModal')
+  %> <% } %>
   <div class="books-header">
     <h1 class="books-page-title">Books Page</h1>
+    <a href="/books/new"><button class="add-entry-button">Add Book</button></a>
     <% if (locals.query) {%>
     <p class="search-results">Search results for "<%= locals.query %>"</p>
     <%}%>

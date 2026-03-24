@@ -1,0 +1,17 @@
+<div id="overlay" class="overlay"></div>
+
+<dialog open>
+  <h2 class="dialog-title">Add Genre</h2>
+  <form class="dialog-form" method="POST" action="/genres/new">
+    <div class="dialog-input-wrapper">
+      <input type="text" id="genre" name="genre" placeholder="Genre" required />
+    </div>
+
+    <div class="button-wrapper">
+      <button type="submit">Add Genre</button>
+      <a href="/genres">
+        <button type="button">Cancel</button>
+      </a>
+    </div>
+  </form>
+</dialog>

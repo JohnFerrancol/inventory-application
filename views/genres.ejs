@@ -1,5 +1,12 @@
 <div class="genres-page">
-  <h1 class="genres-page-title">Genres Page</h1>
+  <% if (locals.showAddGenreDialog) { %> <%- include ('partials/newGenresModal')
+  %> <% } %>
+  <div class="genres-header">
+    <h1 class="genres-page-title">Genres Page</h1>
+    <a href="/genres/new"
+      ><button class="add-entry-button">Add Genre</button></a
+    >
+  </div>
   <div class="genres-container">
     <% genres.map(genre => {%>
     <a href="/books?genres=<%= genre.name %>" class="genre"

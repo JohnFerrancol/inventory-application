@@ -2,9 +2,10 @@ import {
   getAllBooksAndTheirGenres,
   getSearchedBooksAndTheirGenres,
   getBooksByGenres,
+  insertNewBook,
 } from '../models/booksModel.js';
 
-const getBooksPage = async (req, res) => {
+const getBooks = async (req, res) => {
   let books;
   if (req.query.genres) {
     const selectedGenres =
@@ -18,8 +19,27 @@ const getBooksPage = async (req, res) => {
       ? await getSearchedBooksAndTheirGenres(req.query.q)
       : await getAllBooksAndTheirGenres();
   }
-  console.log(books);
-  res.render('books', { title: 'Books', books: books, query: req.query.q });
+  res.render('books', {
+    title: 'Books',
+    books: books,
+    query: req.query.q,
+    showAddBookDialog: false,
+  });
 };
 
-export { getBooksPage };
+const newBooksGet = async (req, res) => {
+  const books = await getAllBooksAndTheirGenres();
+  res.render('books', {
+    title: 'New Book',
+    books: books,
+    showAddBookDialog: true,
+  });
+};
+
+const newBooksPost = async (req, res) => {
+  const { title, author, genre } = req.body;
+  await insertNewBook(title, author, genre);
+  res.redirect('/books');
+};
+
+export { getBooks, newBooksGet, newBooksPost };

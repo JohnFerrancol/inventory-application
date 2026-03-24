@@ -65,6 +65,7 @@ header.navigation .navigation-links:hover {
 header.navigation .search-input {
   background-color: inherit;
   color: inherit;
+  font-family: inherit;
   font-size: 1.1rem;
   font-weight: bold;
   border: 2px solid var(--brown);
@@ -92,6 +93,15 @@ header.navigation .search-button {
 header.navigation .search-button:hover {
   background-color: var(--brown);
   color: var(--light-khaki);
+}
+
+main .add-entry-button {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
 }
 
 main .homepage {
@@ -136,7 +146,7 @@ main .books-page .books-header {
   margin-left: 6.5rem;
   margin-top: 2rem;
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -157,7 +167,7 @@ main .books-page .filters-container {
   background-color: var(--light-khaki);
   padding: 1rem 2rem;
   border-top-left-radius: 1rem;
-  border-right: 1.5px solid var(--black);
+  border-right: 1.5px solid #d3d3d3;
 }
 
 main .books-page .filter-form {
@@ -229,9 +239,12 @@ main .books-page .book-genre {
   text-align: center;
 }
 
-main .genres-page .genres-page-title {
+main .genres-page .genres-header {
   margin-left: 6.5rem;
   margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
 main .genres-page .genres-container {
@@ -254,4 +267,74 @@ main .genres-page .genre {
 
 main .genres-page .genre:hover {
   text-decoration: underline;
+}
+
+main .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+main dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+
+  width: 25vw;
+  background-color: var(--white);
+  color: inherit;
+  box-shadow: var(--content-box-shadow);
+  border: 1px solid #d3d3d3;
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  font-size: 1.25rem;
+}
+
+main dialog .dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+main .dialog-title {
+  text-align: center;
+}
+
+main dialog input,
+main dialog select {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-family: inherit;
+  border: 1.5px solid var(--black);
+  border-radius: 0.5rem;
+  width: 100%;
+  font-weight: 600;
+}
+
+main dialog input:focus,
+main dialog select:focus {
+  outline: none;
+  border: 2px solid var(--black);
+}
+
+main dialog .button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+main dialog .button-wrapper button {
+  font-family: inherit;
+  font-size: 1.25rem;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }

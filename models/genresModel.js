@@ -5,4 +5,8 @@ const getAllGenres = async () => {
   return rows;
 };
 
-export { getAllGenres };
+const insertNewGenre = async (newGenre) => {
+  await pool.query(`INSERT INTO genres (name) VALUES ($1)`, [newGenre]);
+};
+
+export { getAllGenres, insertNewGenre };

@@ -24,8 +24,18 @@ const getBooksByGenres = async (selectedGenres) => {
   return rows;
 };
 
+const insertNewBook = async (title, author, genre) => {
+  await pool.query(
+    `
+    INSERT INTO books (title, author, genre_id) VALUES
+    ($1, $2, (SELECT id FROM genres WHERE name = $3))`,
+    [title, author, genre]
+  );
+};
+
 export {
   getAllBooksAndTheirGenres,
   getSearchedBooksAndTheirGenres,
   getBooksByGenres,
+  insertNewBook,
 };

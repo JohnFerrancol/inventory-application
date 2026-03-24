@@ -1,8 +1,17 @@
 import { Router } from 'express';
-import { getBooksPage } from '../controllers/booksController.js';
+import {
+  getBooks,
+  newBooksGet,
+  newBooksPost,
+} from '../controllers/booksController.js';
 
 const booksRouter = Router();
 
-booksRouter.get('/', getBooksPage);
+// HTTP Requests to get the books
+booksRouter.get('/', getBooks);
+
+// HTTP Requests to add new books
+booksRouter.get('/new', newBooksGet);
+booksRouter.post('/new', newBooksPost);
 
 export default booksRouter;

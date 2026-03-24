@@ -5,7 +5,7 @@ const SQL = `
   -----------------------------------------------------
   -- Genres table
   -- --------------------------------------------------
-  CREATE TABLE genres (
+  CREATE TABLE IF NOT EXISTS genres (
       id SERIAL PRIMARY KEY,
       name TEXT UNIQUE NOT NULL
   );
@@ -13,7 +13,7 @@ const SQL = `
   -----------------------------------------------------
   -- Books table
   -----------------------------------------------------
-  CREATE TABLE books (
+  CREATE TABLE IF NOT EXISTS books (
       id SERIAL PRIMARY KEY,
       title TEXT NOT NULL,
       author TEXT,
