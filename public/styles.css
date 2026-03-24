@@ -1,3 +1,215 @@
+:root {
+  --font-family: 'Poppins', sans-serif;
+  --light-khaki: #e9e5cd;
+  --beige: #f4f1ea;
+  --brown: #382110;
+  --black: #333333;
+  --white: #ffffff;
+  --green: #9fff9c;
+  --red: #ff9c9c;
+  --header-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  --content-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  color: red;
+  font-family: var(--font-family);
+  height: 100vh;
+  background-color: var(--beige);
+  color: var(--black);
+}
+
+header.navigation {
+  background-color: var(--light-khaki);
+  color: var(--brown);
+  padding: 1.25rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--header-box-shadow);
+}
+
+header.navigation .navigation-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header.navigation .navigation-links:first-of-type {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-right: 1rem;
+}
+
+header.navigation .navigation-links {
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+header.navigation .navigation-links:first-of-type:hover {
+  text-decoration: none;
+}
+
+header.navigation .navigation-links:hover {
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+header.navigation .search-input {
+  background-color: inherit;
+  color: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2px solid var(--brown);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 30rem;
+}
+
+header.navigation .search-input:focus {
+  outline: none;
+  border: 3px solid var(--brown);
+}
+
+header.navigation .search-button {
+  background-color: inherit;
+  color: inherit;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: 3px solid var(--brown);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+main .homepage {
+  padding: 1.5rem 3.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+main .homepage p {
+  font-size: 1.15rem;
+}
+
+main .homepage a {
+  text-decoration: none;
+  border: 1px solid var(--black);
+  width: 82%;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  color: inherit;
+  font-weight: 600;
+  border-radius: 1rem;
+  box-shadow: var(--content-box-shadow);
+}
+
+main .homepage a i {
+  margin-left: 0.25rem;
+  transition: transform 0.5s ease;
+}
+
+main .homepage a:hover {
+  font-weight: 800;
+  font-size: 1.2rem;
+  border: 2px solid var(--black);
+}
+
+main .homepage a:hover i {
+  transform: translateX(1rem);
+}
+
+main .books-page .books-page-title {
+  margin-left: 6.5rem;
+  margin-top: 2rem;
+}
+
+main .books-page .books-main-container {
+  display: flex;
+  margin: 1.5rem 6.5rem;
+  margin-right: 6rem;
+  border: 1px solid #d3d3d3;
+  box-shadow: var(--content-box-shadow);
+  border-radius: 1rem;
+}
+
+main .books-page .filters-container {
+  background-color: var(--light-khaki);
+  padding: 1rem 2rem;
+  border-top-left-radius: 1rem;
+  border-right: 1.5px solid var(--black);
+}
+
+main .books-page .books-container {
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+main .books-page .book-container {
+  background-color: var(--white);
+  box-shadow: var(--content-box-shadow);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+main .books-page .book-container:hover {
+  cursor: pointer;
+}
+
+main .books-page .book-title-author {
+  padding: 1rem 1.25rem;
+}
+
+main .books-page .book-title {
+  font-size: 1.35rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+main .books-page .book-author,
+main .books-page .book-genre {
+  font-size: 1.1rem;
+}
+
+main .books-page .book-genre {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 1rem 1rem;
+  text-align: center;
+}
+
+main .genres-page .genres-page-title {
+  margin-left: 6.5rem;
+  margin-top: 2rem;
+}
+
+main .genres-page .genres-container {
+  margin: 1.5rem 6.5rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4rem;
+}
+
+main .genres-page .genre {
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 1.5rem;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  cursor: pointer;
 }

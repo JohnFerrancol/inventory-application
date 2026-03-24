@@ -1,6 +1,25 @@
-<h1>Games Page</h1>
-<% books.map(book => {%>
-<h2><%= book.title %></h2>
-<p><%= book.author %></p>
-<p><%= book.genre %></p>
-<% }) %>
+<div class="books-page">
+  <h1 class="books-page-title">Books Page</h1>
+
+  <div class="books-main-container">
+    <div class="filters-container">
+      <h3>Filter By Genre</h3>
+      <ul>
+        <% genres.map(genre => {%>
+        <li><%= genre.name %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <div class="books-container">
+      <% books.map(book => {%>
+      <div class="book-container">
+        <div class="book-title-author">
+          <h3 class="book-title"><%= book.title %></h3>
+          <p class="book-author"><%= book.author %></p>
+        </div>
+        <p class="book-genre"><%= book.genre %></p>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
