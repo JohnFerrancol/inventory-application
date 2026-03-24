@@ -2,7 +2,7 @@ import { body } from 'express-validator';
 import { getAllGenres } from '../../models/genresModel.js';
 
 const newGenreValidator = [
-  body('genre')
+  body('name')
     .trim()
     .notEmpty()
     .withMessage('Genre is required')

@@ -234,6 +234,23 @@ main .books-page .book-genre {
   font-size: 1.1rem;
 }
 
+main .books-page .book-container .action-button-container {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  gap: 1rem;
+  padding: 0.25rem;
+}
+
+main .books-page .book-container:hover .action-button-container {
+  opacity: 1;
+}
+
+main .books-page .action-icon {
+  color: var(--black);
+  width: 2rem;
+}
+
 main .books-page .book-genre {
   background-color: var(--black);
   color: var(--white);
@@ -257,15 +274,32 @@ main .genres-page .genres-container {
   gap: 4rem;
 }
 
-main .genres-page .genre {
+main .genres-page .genre-wrapper {
   background-color: var(--black);
   color: var(--white);
-  font-size: 1.5rem;
   padding: 2rem 3rem;
   border-radius: 1rem;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main .genres-page .genre {
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.5rem;
   font-weight: 600;
   text-decoration: none;
+}
+
+main .genres-page .edit-genres-icon {
+  color: var(--white);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+main .genre-wrapper:hover .edit-genres-icon {
+  opacity: 1;
 }
 
 main .genres-page .genre:hover {

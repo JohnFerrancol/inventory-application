@@ -1,6 +1,6 @@
 <div class="books-page">
-  <% if (locals.showAddBookDialog) { %> <%- include ('partials/newBooksModal')
-  %> <% } %>
+  <% if (locals.showAddBookDialog) { %> <%- include ('partials/booksModal') %>
+  <% } %>
   <div class="books-header">
     <h1 class="books-page-title">Books Page</h1>
     <a href="/books/new"><button class="add-entry-button">Add Book</button></a>
@@ -34,8 +34,16 @@
       <%}%> <% books.map(book => {%>
       <div class="book-container">
         <div class="book-title-author">
-          <h3 class="book-title"><%= book.title %></h3>
+          <div class="book-header">
+            <h3 class="book-title"><%= book.title %></h3>
+          </div>
           <p class="book-author"><%= book.author %></p>
+          <div class="action-button-container">
+            <a href="/books/<%= book.id %>/edit"
+              ><i class="fas fa-edit action-icon fa-xl"></i
+            ></a>
+            <a href="/"><i class="fas fa-trash action-icon fa-xl"></i></a>
+          </div>
         </div>
         <p class="book-genre"><%= book.genre %></p>
       </div>

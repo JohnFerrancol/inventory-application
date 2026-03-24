@@ -1,8 +1,14 @@
 <div id="overlay" class="overlay"></div>
 
 <dialog open>
-  <h2 class="dialog-title">Add Book</h2>
-  <form class="dialog-form" method="POST" action="/books/new">
+  <h2 class="dialog-title">
+    <% if (locals.edit) { %>Edit Book <%} else {%> Add Book <% }%>
+  </h2>
+  <form 
+    method="POST" 
+    action="<%= edit ? `/books/${formData.id}/edit` : '/books/new' %>"
+    class="dialog-form"
+  >
     <div class="dialog-input-wrapper">
       <% const titleError = errors?.find(e => e.path === 'title'); %>
       <input
@@ -37,13 +43,18 @@
       <label for="genre">Genre: </label>
       <select id="genre" name="genre" required>
         <% genres.forEach(genre => { %>
-        <option value="<%= genre.name %>"><%= genre.name %></option>
+        <option value="<%= genre.name %>" 
+        <%= formData && formData.genre === genre.name ? 'selected' : '' %> >
+        <%= genre.name%>
+        </option>
         <% }) %>
       </select>
     </div>
 
     <div class="button-wrapper">
-      <button type="submit">Add Book</button>
+      <button type="submit">
+        <% if (locals.edit) { %>Edit Book <%} else {%> Add Book <% }%>
+      </button>
       <a href="/books">
         <button type="button">Cancel</button>
       </a>

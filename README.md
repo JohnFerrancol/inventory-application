@@ -65,5 +65,5 @@ npm run start
 - [x] Set up an Express project and a PostgreSQL database with tables
 - [x] Set up routes and controllers for the app
 - [x] Create the 'READ' views, HTTP GET Requests
-- [ ] Create the forms for 'CREATE' and 'UPDATE'
+- [x] Create the forms for 'CREATE' and 'UPDATE'
 - [ ] Add 'DELETE' functionality

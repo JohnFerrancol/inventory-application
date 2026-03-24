@@ -1,0 +1,36 @@
+<div id="overlay" class="overlay"></div>
+
+<dialog open>
+  <h2 class="dialog-title">
+    <% if (locals.edit) { %>Edit Genre <%} else {%> Add Genre <% }%>
+  </h2>
+  <form
+    class="dialog-form"
+    method="POST"
+    action="<%= edit ? `/genres/${formData.id}/edit` : '/genres/new' %>"
+  >
+    <div class="dialog-input-wrapper">
+      <% const genreError = errors?.find(e => e.path === 'name');%>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Genre"
+        class="<%= genreError ? 'input-error' : '' %>"
+        value="<%= formData.name ? formData.name : '' %>"
+      />
+      <% if (genreError) { %>
+      <p class="error-msg"><%= genreError.msg %></p>
+      <% } %>
+    </div>
+
+    <div class="button-wrapper">
+      <button type="submit">
+        <% if (locals.edit) { %>Edit Genre <%} else {%> Add Genre <% }%>
+      </button>
+      <a href="/genres">
+        <button type="button">Cancel</button>
+      </a>
+    </div>
+  </form>
+</dialog>
