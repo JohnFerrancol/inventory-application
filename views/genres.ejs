@@ -2,7 +2,9 @@
   <h1 class="genres-page-title">Genres Page</h1>
   <div class="genres-container">
     <% genres.map(genre => {%>
-    <p class="genre"><%= genre.name %></p>
+    <a href="/books?genres=<%= genre.name %>" class="genre"
+      ><%= genre.name %></a
+    >
     <% }) %>
   </div>
 </div>

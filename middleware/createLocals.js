@@ -1,4 +1,3 @@
-import { getAllBooksAndTheirGenres } from '../models/booksModel.js';
 import { getAllGenres } from '../models/genresModel.js';
 
 const createLocals = async (req, res, next) => {
@@ -8,7 +7,6 @@ const createLocals = async (req, res, next) => {
     { href: '/genres', text: 'Genres' },
   ];
 
-  res.locals.books = await getAllBooksAndTheirGenres();
   res.locals.genres = await getAllGenres();
 
   next();
