@@ -7,6 +7,8 @@ const createLocals = async (req, res, next) => {
     { href: '/genres', text: 'Genres' },
   ];
 
+  res.locals.errors = [];
+  res.locals.formData = [];
   res.locals.genres = await getAllGenres();
 
   next();

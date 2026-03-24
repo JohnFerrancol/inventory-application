@@ -24,6 +24,10 @@ body {
   color: var(--black);
 }
 
+button {
+  cursor: pointer;
+}
+
 header.navigation {
   background-color: var(--light-khaki);
   color: var(--brown);
@@ -87,7 +91,6 @@ header.navigation .search-button {
   border: 3px solid var(--brown);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  cursor: pointer;
 }
 
 header.navigation .search-button:hover {
@@ -318,10 +321,23 @@ main dialog select {
   font-weight: 600;
 }
 
+main dialog .input-error {
+  border: 1.5px solid var(--red);
+}
+
+main dialog .error-msg {
+  color: var(--red);
+  margin-top: 0.1rem;
+}
+
 main dialog input:focus,
 main dialog select:focus {
   outline: none;
   border: 2px solid var(--black);
+}
+
+main dialog .input-error:focus {
+  border: 2px solid var(--red);
 }
 
 main dialog .button-wrapper {

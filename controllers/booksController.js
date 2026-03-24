@@ -5,6 +5,9 @@ import {
   insertNewBook,
 } from '../models/booksModel.js';
 
+import { validationResult, matchedData } from 'express-validator';
+import newBookValidator from '../middleware/validators/bookValidator.js';
+
 const getBooks = async (req, res) => {
   let books;
   if (req.query.genres) {
@@ -36,10 +39,25 @@ const newBooksGet = async (req, res) => {
   });
 };
 
-const newBooksPost = async (req, res) => {
-  const { title, author, genre } = req.body;
-  await insertNewBook(title, author, genre);
-  res.redirect('/books');
-};
+const newBooksPost = [
+  newBookValidator,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const books = await getAllBooksAndTheirGenres();
+      console.log(errors.array());
+      return res.status(400).render('books', {
+        title: 'New Book',
+        books: books,
+        showAddBookDialog: true,
+        errors: errors.array(),
+        formData: req.body,
+      });
+    }
+    const { title, author, genre } = matchedData(req);
+    await insertNewBook(title, author, genre);
+    res.redirect('/books');
+  },
+];
 
 export { getBooks, newBooksGet, newBooksPost };

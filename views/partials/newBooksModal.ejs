@@ -4,17 +4,33 @@
   <h2 class="dialog-title">Add Book</h2>
   <form class="dialog-form" method="POST" action="/books/new">
     <div class="dialog-input-wrapper">
-      <input type="text" id="title" name="title" placeholder="Title" required />
+      <% const titleError = errors?.find(e => e.path === 'title'); %>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="Title"
+        class="<%= titleError ? 'input-error' : '' %>"
+        value="<%= formData.title ? formData.title : '' %>"
+      />
+      <% if (titleError) { %>
+      <p class="error-msg"><%= titleError.msg %></p>
+      <% } %>
     </div>
 
     <div class="dialog-input-wrapper">
+      <% const authorError = errors?.find(e => e.path === 'author'); %>
       <input
         type="text"
         id="author"
         name="author"
         placeholder="Author"
-        required
+        class="<%= authorError ? 'input-error' : '' %>"
+        value="<%= formData.author ? formData.author : '' %>"
       />
+      <% if (authorError) { %>
+      <p class="error-msg"><%= authorError.msg %></p>
+      <% } %>
     </div>
 
     <div class="dialog-input-wrapper">

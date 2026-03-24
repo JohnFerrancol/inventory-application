@@ -4,7 +4,18 @@
   <h2 class="dialog-title">Add Genre</h2>
   <form class="dialog-form" method="POST" action="/genres/new">
     <div class="dialog-input-wrapper">
-      <input type="text" id="genre" name="genre" placeholder="Genre" required />
+      <% const genreError = errors?.find(e => e.path === 'genre');%>
+      <input
+        type="text"
+        id="genre"
+        name="genre"
+        placeholder="Genre"
+        class="<%= genreError ? 'input-error' : '' %>"
+        value="<%= formData.genre ? formData.genre : '' %>"
+      />
+      <% if (genreError) { %>
+      <p class="error-msg"><%= genreError.msg %></p>
+      <% } %>
     </div>
 
     <div class="button-wrapper">
