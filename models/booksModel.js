@@ -54,6 +54,10 @@ const updateBookById = async (title, author, genre, book_id) => {
   );
 };
 
+const deleteBookById = async (id) => {
+  await pool.query(`DELETE FROM books WHERE id=$1`, [id]);
+};
+
 export {
   getAllBooksAndTheirGenres,
   getSearchedBooksAndTheirGenres,
@@ -61,4 +65,5 @@ export {
   getBookById,
   insertNewBook,
   updateBookById,
+  deleteBookById,
 };

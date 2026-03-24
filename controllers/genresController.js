@@ -2,12 +2,17 @@ import {
   getGenreById,
   insertNewGenre,
   updateGenreById,
+  deleteGenreByID,
 } from '../models/genresModel.js';
 import { validationResult, matchedData } from 'express-validator';
 import newGenreValidator from '../middleware/validators/genreValidator.js';
 
-const getGenres = (req, res) => {
-  res.render('genres', { title: 'Genres', showAddGenreDialog: false });
+const getGenres = async (req, res) => {
+  res.render('genres', {
+    title: 'Genres',
+    showAddGenreDialog: false,
+    showDeleteDialog: false,
+  });
 };
 
 const newGenresGet = (req, res) => {
@@ -15,6 +20,7 @@ const newGenresGet = (req, res) => {
     title: 'New Genre',
     showAddGenreDialog: true,
     edit: false,
+    showDeleteDialog: false,
   });
 };
 
@@ -26,6 +32,7 @@ const newGenresPost = [
       return res.status(400).render('genres', {
         title: 'New Genre',
         showAddGenreDialog: true,
+        showDeleteDialog: false,
         errors: errors.array(),
         formData: req.body,
         edit: false,
@@ -40,8 +47,9 @@ const newGenresPost = [
 const editGenresGet = async (req, res) => {
   const genreData = await getGenreById(req.params.id);
   res.render('genres', {
-    title: 'New Genre',
+    title: 'Edit Genre',
     showAddGenreDialog: true,
+    showDeleteDialog: false,
     formData: genreData,
     edit: true,
   });
@@ -55,8 +63,9 @@ const editGenresPost = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render('genres', {
-        title: 'New Genre',
+        title: 'Edit Genre',
         showAddGenreDialog: true,
+        showDeleteDialog: false,
         errors: errors.array(),
         formData: genreData,
         edit: true,
@@ -69,10 +78,30 @@ const editGenresPost = [
   },
 ];
 
+const deleteGenresGet = async (req, res) => {
+  const genreData = await getGenreById(req.params.id);
+  res.render('genres', {
+    title: 'Delete Genre',
+    showAddGenreDialog: false,
+    showDeleteDialog: true,
+    formData: genreData,
+    edit: true,
+  });
+};
+
+const deleteGenresPost = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  await deleteGenreByID(id);
+  res.redirect('/genres');
+};
+
 export {
   getGenres,
   newGenresGet,
   newGenresPost,
   editGenresGet,
   editGenresPost,
+  deleteGenresGet,
+  deleteGenresPost,
 };

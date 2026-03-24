@@ -86,6 +86,7 @@ header.navigation .search-input:focus {
 header.navigation .search-button {
   background-color: inherit;
   color: inherit;
+  font-family: inherit;
   font-weight: bold;
   font-size: 1.1rem;
   border: 3px solid var(--brown);
@@ -99,6 +100,7 @@ header.navigation .search-button:hover {
 }
 
 main .add-entry-button {
+  font-family: inherit;
   background-color: var(--black);
   color: var(--white);
   font-size: 1.25rem;
@@ -234,7 +236,7 @@ main .books-page .book-genre {
   font-size: 1.1rem;
 }
 
-main .books-page .book-container .action-button-container {
+main .action-button-container {
   opacity: 0;
   transition: opacity 0.2s ease;
   display: flex;
@@ -242,12 +244,18 @@ main .books-page .book-container .action-button-container {
   padding: 0.25rem;
 }
 
-main .books-page .book-container:hover .action-button-container {
+main .books-page .book-container:hover .action-button-container,
+main .genres-page .genre-wrapper:hover .action-button-container {
   opacity: 1;
 }
 
 main .books-page .action-icon {
   color: var(--black);
+  width: 2rem;
+}
+
+main .genres-page .action-icon {
+  color: var(--white);
   width: 2rem;
 }
 
@@ -290,16 +298,6 @@ main .genres-page .genre {
   font-size: 1.5rem;
   font-weight: 600;
   text-decoration: none;
-}
-
-main .genres-page .edit-genres-icon {
-  color: var(--white);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-main .genre-wrapper:hover .edit-genres-icon {
-  opacity: 1;
 }
 
 main .genres-page .genre:hover {
@@ -387,4 +385,14 @@ main dialog .button-wrapper button {
   color: var(--white);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+}
+
+main .delete-entry {
+  width: 22vw;
+}
+
+main dialog .delete-msg {
+  font-weight: 600;
+  font-family: inherit;
+  margin-bottom: 2rem;
 }

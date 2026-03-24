@@ -1,0 +1,20 @@
+<div id="overlay" class="overlay"></div>
+
+<dialog open class="delete-entry">
+  
+  <form method="POST" action=<%= formData.title ? `/books/${formData.id}/delete` : `/genres/${formData.id}/delete`%>>
+   
+    <p class="delete-msg">
+      Are you sure you want to delete the following:
+      <br />
+      "<%= formData.title || formData.name %>"
+    </p>
+
+    <div class="button-wrapper">
+      <button type="submit">Delete</button>
+      <a href=<%= formData.title ? "/books" : "/genres" %>>
+        <button type="button">Cancel</button>
+      </a>
+    </div>
+  </form>
+</dialog>

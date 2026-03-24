@@ -66,4 +66,4 @@ npm run start
 - [x] Set up routes and controllers for the app
 - [x] Create the 'READ' views, HTTP GET Requests
 - [x] Create the forms for 'CREATE' and 'UPDATE'
-- [ ] Add 'DELETE' functionality
+- [x] Add 'DELETE' functionality

@@ -5,6 +5,8 @@ import {
   newGenresPost,
   editGenresGet,
   editGenresPost,
+  deleteGenresGet,
+  deleteGenresPost,
 } from '../controllers/genresController.js';
 
 const genresRouter = Router();
@@ -19,5 +21,9 @@ genresRouter.post('/new', newGenresPost);
 // HTTP request to edit existing genres
 genresRouter.get('/:id/edit', editGenresGet);
 genresRouter.post('/:id/edit', editGenresPost);
+
+// HTTP request to delete genres not in use
+genresRouter.get('/:id/delete', deleteGenresGet);
+genresRouter.post('/:id/delete', deleteGenresPost);
 
 export default genresRouter;

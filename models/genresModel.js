@@ -18,4 +18,14 @@ const updateGenreById = async (newGenre, id) => {
   await pool.query(`UPDATE genres SET name=$1 WHERE id=$2`, [newGenre, id]);
 };
 
-export { getAllGenres, insertNewGenre, getGenreById, updateGenreById };
+const deleteGenreByID = async (id) => {
+  await pool.query(`DELETE FROM genres WHERE id=$1`, [id]);
+};
+
+export {
+  getAllGenres,
+  insertNewGenre,
+  getGenreById,
+  updateGenreById,
+  deleteGenreByID,
+};

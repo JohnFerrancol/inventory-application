@@ -1,6 +1,7 @@
 <div class="books-page">
-  <% if (locals.showAddBookDialog) { %> <%- include ('partials/booksModal') %>
-  <% } %>
+  <% if (locals.showAddBookDialog) { %> <%- include('partials/booksModal') %> <%
+  } %> <% if (locals.showDeleteDialog) { %> <%- include('partials/deleteModal')
+  %> <% } %>
   <div class="books-header">
     <h1 class="books-page-title">Books Page</h1>
     <a href="/books/new"><button class="add-entry-button">Add Book</button></a>
@@ -42,7 +43,9 @@
             <a href="/books/<%= book.id %>/edit"
               ><i class="fas fa-edit action-icon fa-xl"></i
             ></a>
-            <a href="/"><i class="fas fa-trash action-icon fa-xl"></i></a>
+            <a href="/books/<%= book.id %>/delete">
+              <i class="fas fa-trash action-icon fa-xl"></i>
+            </a>
           </div>
         </div>
         <p class="book-genre"><%= book.genre %></p>

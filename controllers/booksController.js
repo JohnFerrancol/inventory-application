@@ -5,6 +5,7 @@ import {
   insertNewBook,
   getBookById,
   updateBookById,
+  deleteBookById,
 } from '../models/booksModel.js';
 
 import { validationResult, matchedData } from 'express-validator';
@@ -29,6 +30,7 @@ const getBooks = async (req, res) => {
     books: books,
     query: req.query.q,
     showAddBookDialog: false,
+    showDeleteDialog: false,
   });
 };
 
@@ -38,6 +40,7 @@ const newBooksGet = async (req, res) => {
     title: 'New Book',
     books: books,
     showAddBookDialog: true,
+    showDeleteDialog: false,
     edit: false,
   });
 };
@@ -52,6 +55,7 @@ const newBooksPost = [
         title: 'New Book',
         books: books,
         showAddBookDialog: true,
+        showDeleteDialog: false,
         errors: errors.array(),
         formData: req.body,
         edit: false,
@@ -70,6 +74,7 @@ const editBookGet = async (req, res) => {
     title: 'Edit Book',
     books: books,
     showAddBookDialog: true,
+    showDeleteDialog: false,
     formData: bookData,
     edit: true,
   });
@@ -84,9 +89,10 @@ const editBookPost = [
     if (!errors.isEmpty()) {
       const books = await getAllBooksAndTheirGenres();
       return res.status(400).render('books', {
-        title: 'New Book',
+        title: 'Edit Book',
         books: books,
         showAddBookDialog: true,
+        showDeleteDialog: false,
         errors: errors.array(),
         formData: bookData,
         edit: true,
@@ -99,4 +105,31 @@ const editBookPost = [
   },
 ];
 
-export { getBooks, newBooksGet, newBooksPost, editBookGet, editBookPost };
+const deleteBookGet = async (req, res) => {
+  const books = await getAllBooksAndTheirGenres();
+  const bookData = await getBookById(req.params.id);
+  res.render('books', {
+    title: 'Delete Book',
+    books: books,
+    showAddBookDialog: false,
+    showDeleteDialog: true,
+    edit: false,
+    formData: bookData,
+  });
+};
+
+const deleteBookPost = async (req, res) => {
+  const id = req.params.id;
+  await deleteBookById(id);
+  res.redirect('/books');
+};
+
+export {
+  getBooks,
+  newBooksGet,
+  newBooksPost,
+  editBookGet,
+  editBookPost,
+  deleteBookGet,
+  deleteBookPost,
+};

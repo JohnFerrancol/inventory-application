@@ -1,6 +1,7 @@
 <div class="genres-page">
   <% if (locals.showAddGenreDialog) { %> <%- include ('partials/genresModal') %>
-  <% } %>
+  <% } %> <% if (locals.showDeleteDialog) { %> <%- include
+  ('partials/deleteModal') %> <% } %>
   <div class="genres-header">
     <h1 class="genres-page-title">Genres Page</h1>
     <a href="/genres/new"
@@ -13,9 +14,17 @@
       <a href="/books?genres=<%= genre.name %>" class="genre"
         ><%= genre.name %></a
       >
-      <a href="/genres/<%= genre.id %>/edit"
-        ><i class="fas fa-edit edit-genres-icon fa-xl"></i
-      ></a>
+      <div class="action-button-container">
+        <a href="/genres/<%= genre.id %>/edit"
+          ><i class="fas fa-edit action-icon fa-xl"></i
+        ></a>
+
+        <% if (!usedGenres.has(genre.name)) { %>
+        <a href="/genres/<%= genre.id %>/delete"
+          ><i class="fas fa-trash action-icon fa-xl"></i
+        ></a>
+        <% } %>
+      </div>
     </div>
     <% }) %>
   </div>
