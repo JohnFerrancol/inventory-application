@@ -10,6 +10,7 @@ const createLocals = async (req, res, next) => {
 
   const books = await getAllBooksAndTheirGenres();
 
+  // Have the usedGenres array to ensure that we know which genres are used by the books so that we do not delete genres that are in use
   res.locals.usedGenres = new Set(books.map((b) => b.genre));
   res.locals.errors = [];
   res.locals.formData = [];

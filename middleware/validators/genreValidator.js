@@ -11,6 +11,7 @@ const newGenreValidator = [
     .withMessage('Genre has a 30 characters limit')
     .bail()
     .custom(async (value) => {
+      // Declare a function used to check whether the input passed in the form exists in the genres table, if so throw error
       const genres = await getAllGenres();
       const genreNames = genres.map((g) => g.name.toLowerCase());
 

@@ -11,6 +11,7 @@ import {
 import { validationResult, matchedData } from 'express-validator';
 import newBookValidator from '../middleware/validators/bookValidator.js';
 
+// Middleware used to get the list of books to the index /books page
 const getBooks = async (req, res) => {
   let books;
   if (req.query.genres) {
@@ -34,6 +35,7 @@ const getBooks = async (req, res) => {
   });
 };
 
+// Middleware used to render the form to add a new book
 const newBooksGet = async (req, res) => {
   const books = await getAllBooksAndTheirGenres();
   res.render('books', {
@@ -45,6 +47,7 @@ const newBooksGet = async (req, res) => {
   });
 };
 
+// Middleware used to process the data from the form and insert the book to the table
 const newBooksPost = [
   newBookValidator,
   async (req, res) => {
@@ -67,6 +70,7 @@ const newBooksPost = [
   },
 ];
 
+// Controller used to render the form to the edit an existing book
 const editBookGet = async (req, res) => {
   const bookData = await getBookById(req.params.id);
   const books = await getAllBooksAndTheirGenres();
@@ -80,6 +84,7 @@ const editBookGet = async (req, res) => {
   });
 };
 
+// Middleware used to process the data from the form to update an existing book data
 const editBookPost = [
   newBookValidator,
   async (req, res) => {
@@ -105,6 +110,7 @@ const editBookPost = [
   },
 ];
 
+// Middleware used to render the dialog to confirm the deletion of the selected book entry
 const deleteBookGet = async (req, res) => {
   const books = await getAllBooksAndTheirGenres();
   const bookData = await getBookById(req.params.id);
@@ -118,6 +124,7 @@ const deleteBookGet = async (req, res) => {
   });
 };
 
+// Middleware used to process the deletion of the book entry from the table
 const deleteBookPost = async (req, res) => {
   const id = req.params.id;
   await deleteBookById(id);

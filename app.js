@@ -30,8 +30,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layout');
 
+// Put the reusable locals in the in createLocals middleware function
 app.use(createLocals);
 
+// Declaring the routes in the express server
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/genres', genresRouter);

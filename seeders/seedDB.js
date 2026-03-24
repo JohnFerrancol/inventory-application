@@ -1,6 +1,7 @@
 import { Client } from 'pg';
 import 'dotenv/config';
 
+// Generating dummy data
 const SQL = `
   -----------------------------------------------------
   -- Genres table
@@ -55,6 +56,7 @@ const SQL = `
   ('The 7 Habits of Highly Effective People', 'Stephen Covey', (SELECT id FROM genres WHERE name = 'Self-help'))
 `;
 
+// Run the function to add the dummy data to the database
 const main = async () => {
   console.log('Seeding Inventory Application Database....');
   const client = new Client({ connectionString: process.env.DB_URL });

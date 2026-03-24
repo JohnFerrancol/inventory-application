@@ -22,6 +22,7 @@ const newBookValidator = [
     .withMessage('Genre is required')
     .bail()
     .custom(async (value) => {
+      // This is to check that the genre passed in the form is inside the table
       const genres = await getAllGenres();
       const genreNames = genres.map((g) => g.name);
 

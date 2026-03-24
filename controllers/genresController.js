@@ -7,6 +7,7 @@ import {
 import { validationResult, matchedData } from 'express-validator';
 import newGenreValidator from '../middleware/validators/genreValidator.js';
 
+// Middleware used to render the list of genres to the index /genres page
 const getGenres = async (req, res) => {
   res.render('genres', {
     title: 'Genres',
@@ -15,6 +16,7 @@ const getGenres = async (req, res) => {
   });
 };
 
+// Middleware used to render the form to add a new genre
 const newGenresGet = (req, res) => {
   res.render('genres', {
     title: 'New Genre',
@@ -24,6 +26,7 @@ const newGenresGet = (req, res) => {
   });
 };
 
+// Middleware used to process the data from the form and insert the data to the table
 const newGenresPost = [
   newGenreValidator,
   async (req, res) => {
@@ -44,6 +47,7 @@ const newGenresPost = [
   },
 ];
 
+// Middleware used to render the form to edit an existing genre
 const editGenresGet = async (req, res) => {
   const genreData = await getGenreById(req.params.id);
   res.render('genres', {
@@ -55,6 +59,7 @@ const editGenresGet = async (req, res) => {
   });
 };
 
+// Middleware used to process the data from the form and update the data
 const editGenresPost = [
   newGenreValidator,
   async (req, res) => {
@@ -78,6 +83,7 @@ const editGenresPost = [
   },
 ];
 
+// Middleware used to render the modal to confirm the deletion of the selected genre
 const deleteGenresGet = async (req, res) => {
   const genreData = await getGenreById(req.params.id);
   res.render('genres', {
@@ -89,6 +95,7 @@ const deleteGenresGet = async (req, res) => {
   });
 };
 
+// Middleware used to process the deletion of the genre from the table
 const deleteGenresPost = async (req, res) => {
   const id = req.params.id;
   console.log(id);
