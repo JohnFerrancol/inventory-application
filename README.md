@@ -5,7 +5,7 @@
 
 ## Overview
 
-This is a project from [The Odin Project](https://theodinproject.com): [Project: Inventory Application](https://www.theodinproject.com/lessons/node-path-nodejs-inventory-application). This Express project allows for practice with CRUD methods in Express through database management using PostgreSQL on an inventory management app. For this project, it will be the management of PC games from [Steam](https://store.steampowered.com/)
+This is a project from [The Odin Project](https://theodinproject.com): [Project: Inventory Application](https://www.theodinproject.com/lessons/node-path-nodejs-inventory-application). This Express project allows for practice with CRUD methods in Express through database management using PostgreSQL on an inventory management app. For this project, it will be the management of books.
 
 ## Learning Points
 
